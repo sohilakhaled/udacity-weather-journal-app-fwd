@@ -13,7 +13,6 @@ let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
 // Event listener to add function to existing HTML DOM element
 document.getElementById('generate').addEventListener('click', performAction);
 function performAction(e) {
-    e.preventDefault();
     getWeather(baseURL, zipcode, apiKey)
         .then(function (userData) {
             // add data to POST request
