@@ -16,7 +16,7 @@ function performAction(e) {
     getWeather(baseURL, zipcode, apiKey)
         .then(function (userData) {
             // add data to POST request
-            postData('/add', { temperature: userData.main.temp, userData: newDate, user_response: feelings  })
+            postData('/add', { temperature: userData.main.temp, userData: newDate, user_response: feelings })
         }).then(function (newData) {
             // call updateUI to update browser userfeeling
             updateUI()
