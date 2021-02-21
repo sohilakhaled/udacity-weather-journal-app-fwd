@@ -8,7 +8,7 @@ const apiKey = '7dabfffe66086ea321b91f61b6205af5';
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
+let newDate = d.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
 // Event listener to add function to existing HTML DOM element
 document.getElementById('generate').addEventListener('click', performAction);
@@ -16,7 +16,7 @@ function performAction(e) {
     getWeather(baseURL, zipcode, apiKey)
         .then(function (userData) {
             // add data to POST request
-            postData('/add', { date: newDate, temp: userData.main.temp, userfeeling })
+            postData('/add', { temperature: userData.main.temp, userData: newDate, user_response: feelings  })
         }).then(function (newData) {
             // call updateUI to update browser userfeeling
             updateUI()
