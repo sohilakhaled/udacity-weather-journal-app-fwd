@@ -27,11 +27,10 @@ const data = [];
 app.post('/add', addInfo);
 
 function addInfo(req, res) {
-  projectData.temperature = request.body.temperature;
-  projectData.date = request.body.date;
-  projectData.user_response = request.body.user_response;
-  response.end();
-  console.log(projectData)
+  projectData['temp'] = req.body.temp;
+  projectData['date'] = req.body.date;
+  projectData['content'] = req.body.content;
+  res.send(projectData);
 }
 
 // Callback function to complete GET '/all'

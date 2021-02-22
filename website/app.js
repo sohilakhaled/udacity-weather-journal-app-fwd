@@ -1,10 +1,11 @@
 /* Global Variables */
-let zipcode = document.getElementById('zip').value;
-let userfeeling = document.getElementById('feelings').value;
+const zipcode = document.getElementById('zip').value;
+const userfeeling = document.getElementById('feelings').value;
+const userInfo = document.getElementById('userInfo');
 
 // Base URL and API Key for OpenWeatherMap API
-const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
 const apiKey = '7dabfffe66086ea321b91f61b6205af5';
+const baseURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode}&appid=${apiKey}`;
 
 // Create a new date instance dynamically with JS
 let d = new Date();
@@ -13,10 +14,11 @@ let newDate = d.toLocaleString('en-US', { month: 'long', day: 'numeric', year: '
 // Event listener to add function to existing HTML DOM element
 document.getElementById('generate').addEventListener('click', performAction);
 function performAction(e) {
+    e.preventDefault();
     getWeather(baseURL, zipcode, apiKey)
         .then(function (userData) {
             // add data to POST request
-            postData('/add', { temperature: userData.main.temp, userData: newDate, user_response: feelings })
+            postData('/add', { temp: userData.main.temp, date: newDate, content: content })
         }).then(function (newData) {
             // call updateUI to update browser userfeeling
             updateUI()
